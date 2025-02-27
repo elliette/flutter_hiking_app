@@ -1,0 +1,30 @@
+name: property_editor_study
+description: "For Property Editor rapid research."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.0-70.0.dev
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/lake.jpg
+    - assets/valley.jpg
+    - assets/meadow.jpg
+    - assets/mountain_peaks.jpg
+    - assets/mountain_summit.jpg
+    - assets/thousand_island_lake.jpg
