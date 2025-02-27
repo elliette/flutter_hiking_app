@@ -90,8 +90,8 @@ class _CloseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 40.0,
-      left: 20.0,
+      top: 2.0,
+      left: 2.0,
       child: IconButton(
         onPressed: onClose,
         color: Theme.of(context).buttonTheme.colorScheme?.onInverseSurface,
@@ -113,6 +113,7 @@ class _DetailsTitle extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
@@ -200,8 +201,9 @@ class _HikeDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       hike.details,
-      overflow: TextOverflow.clip,
+      overflow: TextOverflow.ellipsis,
       style: Theme.of(context).textTheme.bodySmall,
+      maxLines: 2,
     );
   }
 }
@@ -215,14 +217,13 @@ class _HikeDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         SizedBox(
-          height: 100,
+          height: 180,
           child: Stack(
-            fit: StackFit.loose,
+            fit: StackFit.expand,
             children: [
-              Image.asset(hike.imagePath, fit: BoxFit.scaleDown),
+              Image.asset(hike.imagePath, fit: BoxFit.cover),
               _Gradient(),
               _DetailsTitle(hike: hike),
               _CloseButton(onClose: onClose),
@@ -234,6 +235,7 @@ class _HikeDetails extends StatelessWidget {
           child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _HikeDate(hike: hike),
                   _DifficultyLabel(
@@ -270,10 +272,9 @@ class _HikeSummary extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Flexible(child: _SummaryTitle(hike: hike)),
                     _DifficultyLabel(difficulty: hike.difficulty),
@@ -299,7 +300,7 @@ class _HorizontalSpacing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(width: 10);
+    return const SizedBox(width: 20);
   }
 }
 
@@ -315,7 +316,7 @@ class _ShowDetailsButton extends StatelessWidget {
       alignment: AlignmentDirectional.topEnd,
       child: TextButton(
         onPressed: () => showHikeDetails(hike),
-        child: Text('Select hike'),
+        child: Text('Show details'),
       ),
     );
   }
@@ -356,6 +357,6 @@ class _VerticalSpacing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(height: 10);
+    return const SizedBox(height: 20);
   }
 }
